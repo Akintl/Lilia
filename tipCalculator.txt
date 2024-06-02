@@ -1,0 +1,46 @@
+// Function to validate service quality
+function validateServiceQuality(serviceQuality) {
+    const validQualities = ['great', 'ok', 'poor'];
+    return validQualities.includes(serviceQuality.toLowerCase());
+}
+
+// Function to validate service amount
+function validateServiceAmount(serviceAmount) {
+    // Ensure the input is a number and within the specified range
+    return !isNaN(serviceAmount) && serviceAmount >= 5.00 && serviceAmount <= 500.00;
+}
+
+// Function to calculate the tip amount
+function calculateTip(serviceAmount, serviceQuality) {
+    let tipPercentage;
+
+    switch (serviceQuality.toLowerCase()) {
+        case 'great':
+            tipPercentage = 0.20;
+            break;
+        case 'ok':
+            tipPercentage = 0.15;
+            break;
+        case 'poor':
+            tipPercentage = 0.10;
+            break;
+    }
+
+    return serviceAmount * tipPercentage;
+}
+
+// Function to calculate the tip and display the result
+function calculateTipAndDisplay() {
+    const serviceAmount = parseFloat(document.getElementById('serviceAmount').value);
+    if (!validateServiceAmount(serviceAmount)) {
+        alert("Invalid service amount entered. Please enter a valid number between $5.00 and $500.00.");
+        return;
+    }
+    const serviceQuality = document.getElementById('serviceQuality').value;
+    if (!validateServiceQuality(serviceQuality)) {
+        alert("Invalid service quality entered. Please enter 'great', 'ok', or 'poor'.");
+        return;
+    }
+    const tipAmount = calculateTip(serviceAmount, serviceQuality);
+    document.getElementById('result').innerText = `For a service amount of $${serviceAmount.toFixed(2)}, ${serviceQuality} service should get a tip of $${tipAmount.toFixed(2)}.`;
+}

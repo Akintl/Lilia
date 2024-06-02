@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <script src="tipCalculator.js" defer></script>
+</head>
+<body>
+    <h1>Tip Calculator</h1>
+    <label for="serviceAmount">Enter the dollar amount of the service:</label>
+    <input type="text" id="serviceAmount" name="serviceAmount"><br><br>
+    <label for="serviceQuality">Enter the service quality (great, ok, poor):</label>
+    <input type="text" id="serviceQuality" name="serviceQuality"><br><br>
+    <button onclick="calculateTipAndDisplay()">Calculate Tip</button>
+    <p id="result"></p>
+</body>
+</html>
