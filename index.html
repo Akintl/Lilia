@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tip Calculator</title>
-    <script src="tipCalculator.js" defer></script>
-</head>
-<body>
-    <h1>Tip Calculator</h1>
-    <label for="serviceAmount">Enter the dollar amount of the service:</label>
-    <input type="text" id="serviceAmount" name="serviceAmount"><br><br>
-    <label for="serviceQuality">Enter the service quality (great, ok, poor):</label>
-    <input type="text" id="serviceQuality" name="serviceQuality"><br><br>
-    <button onclick="calculateTipAndDisplay()">Calculate Tip</button>
-    <p id="result"></p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Favorite Fictional Dog</title>
+    <style>
+      .dog-info {
+        font-family: Arial, sans-serif;
+      }
+      .dog-info .name {
+        color: purple;
+      }
+      .dog-info .sound {
+        color: blue;
+      }
+      .dog-info .show {
+        color: blue;
+      }
+      .dog-info .breed {
+        color: blue;
+      }
+    </style>
+    <script>
+      // Creating a literal object named myDog
+      let myDog = {
+        name: "Big Dog",
+        show: "2 Stupid Dogs",
+        breed: "Old English Sheepdog",
+        description:
+          "About a big dog and a little dog who aren't very smart and their everyday misadventures.",
+        mySound: "I sound very intimidating because of my size.",
+      };
+
+      // Method to display the dog's details
+      myDog.displayInfo = function () {
+        return `Hello, my name is <span class="name">${this.name}</span>. I starred in the TV show <span class="show">${this.show}</span>. My character was a <span class="breed">${this.breed}</span>. ${this.description} <span class="sound">${this.mySound}</span>`;
+      };
+
+      // Function to display the dog's details in the HTML
+      function displayDogInfo() {
+        document.getElementById("dogInfo").innerHTML = myDog.displayInfo();
+      }
+
+      // Display the dog's details when the page loads
+      window.onload = displayDogInfo;
+    </script>
+  </head>
+  <body>
+    <h1>Fictional Dog Information</h1>
+    <p id="dogInfo" class="dog-info"></p>
+  </body>
 </html>
