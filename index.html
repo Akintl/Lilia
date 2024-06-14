@@ -11,39 +11,77 @@
       .dog-info .name {
         color: purple;
       }
-      .dog-info .sound {
-        color: blue;
-      }
-      .dog-info .show {
-        color: blue;
-      }
+      .dog-info .sound,
+      .dog-info .show,
       .dog-info .breed {
         color: blue;
       }
     </style>
     <script>
-      // Creating a literal object named myDog
-      let myDog = {
-        name: "Big Dog",
-        show: "2 Stupid Dogs",
-        breed: "Old English Sheepdog",
-        description:
-          "About a big dog and a little dog who aren't very smart and their everyday misadventures.",
-        mySound: "I sound very intimidating because of my size.",
-      };
-
-      // Method to display the dog's details
-      myDog.displayInfo = function () {
-        return `Hello, my name is <span class="name">${this.name}</span>. I starred in the TV show <span class="show">${this.show}</span>. My character was a <span class="breed">${this.breed}</span>. ${this.description} <span class="sound">${this.mySound}</span>`;
-      };
-
-      // Function to display the dog's details in the HTML
-      function displayDogInfo() {
-        document.getElementById("dogInfo").innerHTML = myDog.displayInfo();
+      // Constructor function to define a dog object
+      function Dog(name, show, breed, description, mySound, canTalk) {
+        this.name = name;
+        this.show = show;
+        this.breed = breed;
+        this.description = description;
+        this.mySound = mySound;
+        this.canTalk = canTalk;
+        this.myGreeting = function () {
+          if (this.canTalk) {
+            return `Hello, my name is <span class="name">${this.name}</span>. I starred in the TV show <span class="show">${this.show}</span>. My character was a <span class="breed">${this.breed}</span>. ${this.description} <span class="sound">${this.mySound}</span> I can talk!`;
+          } else {
+            return `Hello, my name is <span class="name">${this.name}</span>. I starred in the TV show <span class="show">${this.show}</span>. My character was a <span class="breed">${this.breed}</span>. ${this.description} <span class="sound">${this.mySound}</span> I cannot talk.`;
+          }
+        };
       }
 
-      // Display the dog's details when the page loads
-      window.onload = displayDogInfo;
+      // Create two new dog objects
+      let dog1 = new Dog(
+        "Snoopy",
+        "Peanuts",
+        "Beagle",
+        "Snoopy is Charlie Brown's pet beagle.",
+        "I sound happy and adventurous.",
+        true
+      );
+      let dog2 = new Dog(
+        "Brain",
+        "Inspector Gadget",
+        "Generic",
+        "Inspector Gadget's and Penny's faithful pet dog; about the adventures of a clumsy simple-witted cyborg detective.",
+        "I sound smart and helpful.",
+        false
+      );
+
+      // Function to display each property and value in the object
+      function displayDogProperties(dog) {
+        let dogDetails = "";
+        for (let property in dog) {
+          if (typeof dog[property] !== "function") {
+            dogDetails += `<p>${property}: ${dog[property]}</p>`;
+          }
+        }
+        return dogDetails;
+      }
+
+      // Prompt the user to select one of the dogs by typing in one of the dog's names
+      function selectDog() {
+        let dogName = prompt("Please enter the dog's name (Snoopy or Brain):");
+        let selectedDog;
+        if (dogName === "Snoopy") {
+          selectedDog = dog1;
+        } else if (dogName === "Brain") {
+          selectedDog = dog2;
+        } else {
+          alert("The dog you selected does not exist.");
+          return;
+        }
+        document.getElementById("dogInfo").innerHTML =
+          selectedDog.myGreeting() + displayDogProperties(selectedDog);
+      }
+
+      // Display the selected dog's details when the page loads
+      window.onload = selectDog;
     </script>
   </head>
   <body>
